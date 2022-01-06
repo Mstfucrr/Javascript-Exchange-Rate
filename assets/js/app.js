@@ -1,16 +1,23 @@
 const fromRates = document.getElementsByName("From")[0];
-fromRates.addEventListener("change", InputText)
 const toRates = document.getElementsByName("To")[0];
-toRates.addEventListener("change", InputText)
 const fromInput = document.getElementById("fromInput")
-fromInput.addEventListener("input", InputText);
 const toInput = document.getElementById("toInput")
+
+eventlisteners()
+
+function eventlisteners() {
+
+    toRates.addEventListener("change", InputText)
+    fromRates.addEventListener("change", InputText)
+    fromInput.addEventListener("input", InputText);
+
+}
 
 function InputText(e) {
     GetRates()
         .then(result => fromInput.value * (result.rates[toRates.value] / result.rates[fromRates.value]))
         .then(result => toInput.value = result)
-        
+
 }
 
 async function GetRates() {
